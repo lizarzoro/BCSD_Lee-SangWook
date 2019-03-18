@@ -38,6 +38,8 @@ int main()
 	//=======================파일 읽기=====================
 	fopen_s(&pFile, "hot.txt", "rt");
 	
+
+
 	if (pFile)
 	{
 		char strText[5] = {};
