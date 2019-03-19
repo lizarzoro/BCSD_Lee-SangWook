@@ -3,6 +3,9 @@
 
 #include "stdafx.h"
 #include "BCSD_190315.h"
+#include <list>
+
+using namespace std;
 
 #define MAX_LOADSTRING 100
 
@@ -20,6 +23,16 @@ HWND	g_hWnd;
 HDC		g_hDC;
 bool	g_bLoop = true;
 RECTANGLE	g_tPlayerRC = { 100, 100, 200, 200 };
+
+typedef struct _tagBullet
+{
+	RECTANGLE rc;
+	float fDist;
+	float fLimitDist;
+}BULLET, *PBULLET;
+
+// 플레이어 총알
+list<BULLET> g_PlayerBulletList;
 
 // 시간 구하기 위한 변수들
 LARGE_INTEGER	g_tSecond;
@@ -257,7 +270,7 @@ void Run()
 
 	// 플레이어 초당 이동속도 : 
 	//static float fMoveUpTime = 3.f;
-	float	fSpeed = 400 * g_fDeltaTime;
+	float	fSpeed = 400.f * g_fDeltaTime;
 	if (GetAsyncKeyState('D') & 0x8000)
 	{
 		g_tPlayerRC.l += fSpeed;
@@ -282,14 +295,30 @@ void Run()
 		g_tPlayerRC.b -= fSpeed;
 	}
 
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+	{
+		BULLET tBullet;
+
+		tBullet.rc.l = g_tPlayerRC.r;
+		tBullet.rc.r = g_tPlayerRC.r + 50.f;
+		tBullet.rc.t = (g_tPlayerRC.t + g_tPlayerRC.b) / 2.f - 25.f;
+		tBullet.rc.b = tBullet.rc.t + 50.f;
+		tBullet.fDist = 0.f;
+		tBullet.fLimitDist = 500.f;
+
+		g_PlayerBulletList.push_back(tBullet);
+	}
+
 	RECT rcWindow;  
 	GetClientRect(g_hWnd, &rcWindow);
+	SetRect(&rcWindow, 0, 0, 800, 600);
 
 	if (g_tPlayerRC.l < 0)
 	{
 		g_tPlayerRC.l = 0;
 		g_tPlayerRC.r = 100;
 	}
+
   	else if (g_tPlayerRC.r > rcWindow.right)
 	{
 		g_tPlayerRC.r = rcWindow.right;
@@ -308,6 +337,42 @@ void Run()
 		g_tPlayerRC.t = rcWindow.bottom - 100;
 	}
 	
+	// 플레이어 총알 이동
+	list<BULLET>::iterator	iter;
+	list<BULLET>::iterator	iterEnd = g_PlayerBulletList.end();
+
+	fSpeed = 600.f * g_fDeltaTime * fTimeScale;
+
+	for (iter = g_PlayerBulletList.begin(); iter != iterEnd;)
+	{
+		(*iter).rc.r += fSpeed;
+		(*iter).rc.l += fSpeed;
+
+		(*iter).fDist += fSpeed;
+
+		if ((*iter).fDist >= (*iter).fLimitDist)
+		{
+			iter = g_PlayerBulletList.erase(iter);
+			iterEnd = g_PlayerBulletList.end();
+		}
+
+		else if (800 <= (*iter).rc.l)
+		{
+			iter = g_PlayerBulletList.erase(iter);
+			iterEnd = g_PlayerBulletList.end();
+		}
+
+		else
+			++iter;
+	}
+	
+	// 총알 출력
+	Rectangle(g_hDC, 0, 0, 800, 600);
 	Rectangle(g_hDC, g_tPlayerRC.l, g_tPlayerRC.t,
 		g_tPlayerRC.r, g_tPlayerRC.b);
+
+	for (iter = g_PlayerBulletList.begin(); iter != iterEnd; ++iter)
+	{
+		Rectangle(g_hDC, (*iter).rc.l, (*iter).rc.t, (*iter).rc.r, (*iter).rc.b);
+	}
 }
