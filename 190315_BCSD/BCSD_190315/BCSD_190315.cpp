@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "BCSD_190315.h"
 #include <list>
+#include <math.h>
 
 using namespace std;
 
@@ -20,14 +21,22 @@ typedef struct _tagRectangle
 	float l, t, r, b;
 } RECTANGLE, *PRECTANGLE;
 
+typedef struct _tagSphere
+{
+	float x, y;
+	float r;
+}SPHERE, *PSPHERE;
+
 typedef struct _tagMonster
 {
-	RECTANGLE	tRC;
+	SPHERE	tSphere;
 	float	fSpeed;
 	float	fTime;
 	float	fLimitTime;
 	int		iDir;
 }MONSTER, *PMONSTER;
+
+
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
@@ -42,7 +51,7 @@ MONSTER		g_tMonster;
 
 typedef struct _tagBullet
 {
-	RECTANGLE rc;
+	SPHERE tSphere;
 	float fDist;
 	float fLimitDist;
 }BULLET, *PBULLET;
@@ -91,10 +100,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	g_hDC = GetDC(g_hWnd);
 
 	// 몬스터 초기화
-	g_tMonster.tRC.l = 800.f - 100.f;
-	g_tMonster.tRC.t = 0.f;
-	g_tMonster.tRC.r = 800.f;
-	g_tMonster.tRC.b = 100.f;
+	g_tMonster.tSphere.x = 800.f - 50.f;
+	g_tMonster.tSphere.y = 50.f;
+	g_tMonster.tSphere.r = 50.f;
 	g_tMonster.fSpeed = 300.f;
 	g_tMonster.fTime = 0.f;
 	g_tMonster.fLimitTime = 2.f;
@@ -328,14 +336,30 @@ void Run()
 	{
 		BULLET tBullet;
 
-		tBullet.rc.l = g_tPlayerRC.r;
-		tBullet.rc.r = g_tPlayerRC.r + 50.f;
-		tBullet.rc.t = (g_tPlayerRC.t + g_tPlayerRC.b) / 2.f - 25.f;
-		tBullet.rc.b = tBullet.rc.t + 50.f;
+		tBullet.tSphere.x = g_tPlayerRC.r + 50.f;
+		tBullet.tSphere.y = g_tPlayerRC.t + 50.f;
+		tBullet.tSphere.r = 25.f;
 		tBullet.fDist = 0.f;
 		tBullet.fLimitDist = 500.f;
 
 		g_PlayerBulletList.push_back(tBullet);
+	}
+
+	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+	{
+		// 마우스 위치를 얻어온다
+		POINT ptMouse;
+		// 아래 함수는 마우스 위치를 얻어온다.
+		// 마우스 위치는 스크린 좌표 기준으로 받아온다.
+		GetCursorPos(&ptMouse);
+
+		// 스크린 좌표 -> 클라이언트 좌표
+		ScreenToClient(g_hWnd, &ptMouse);
+
+		// 플레이어와 충돌처리
+		if (g_tPlayerRC.l <= ptMouse.x && ptMouse.x <= g_tPlayerRC.r &&
+			g_tPlayerRC.t <= ptMouse.y && ptMouse.y <= g_tPlayerRC.b)
+			MessageBox(NULL, L"플레이어 클릭", L"마우스 클릭", MB_OK);
 	}
 
 	RECT rcWindow;  
@@ -366,21 +390,19 @@ void Run()
 		g_tPlayerRC.t = rcWindow.bottom - 100;
 	}
 	// 몬스터 이동
-	g_tMonster.tRC.t += g_tMonster.fSpeed * g_fDeltaTime * fTimeScale * g_tMonster.iDir;
-	g_tMonster.tRC.b += g_tMonster.fSpeed * g_fDeltaTime * fTimeScale * g_tMonster.iDir;
+	g_tMonster.tSphere.y += g_tMonster.fSpeed * g_fDeltaTime * fTimeScale * g_tMonster.iDir;
+	//g_tMonster.tRC.b += g_tMonster.fSpeed * g_fDeltaTime * fTimeScale * g_tMonster.iDir;
 
-	if (g_tMonster.tRC.b >= 600)
+	if (g_tMonster.tSphere.y + g_tMonster.tSphere.r >= 600)
 	{
 		g_tMonster.iDir = MD_BACK;
-		g_tMonster.tRC.b = 600;
-		g_tMonster.tRC.t = 500;
+		g_tMonster.tSphere.y = 550;
 	}
 
-	else if (g_tMonster.tRC.b <= 0)
+	else if (g_tMonster.tSphere.y -g_tMonster.tSphere.r <= 0)
 	{
 		g_tMonster.iDir = MD_FRONT;
-		g_tMonster.tRC.b = 100;
-		g_tMonster.tRC.t = 0;
+		g_tMonster.tSphere.y = 50;
 	}
 
 	// 몬스터 총알 발사 로직
@@ -392,10 +414,9 @@ void Run()
 		
 		BULLET tBullet = {};
 
-		tBullet.rc.r = g_tMonster.tRC.l;
-		tBullet.rc.l = g_tMonster.tRC.l - 50.f;
-		tBullet.rc.t = (g_tMonster.tRC.t + g_tMonster.tRC.b) / 2.f - 25.f;
-		tBullet.rc.b = tBullet.rc.t + 50.f;
+		tBullet.tSphere.x = g_tMonster.tSphere.x - g_tMonster.tSphere.r - 25.f;
+		tBullet.tSphere.y = g_tMonster.tSphere.y;
+		tBullet.tSphere.r = 25.f;
 		tBullet.fDist = 0.f;
 		tBullet.fLimitDist = 800.f;
 
@@ -410,22 +431,33 @@ void Run()
 
 	for (iter = g_PlayerBulletList.begin(); iter != iterEnd;)
 	{
-		(*iter).rc.r += fSpeed;
-		(*iter).rc.l += fSpeed;
+		(*iter).tSphere.x += fSpeed;
 
 		(*iter).fDist += fSpeed;
 
-		if ((*iter).fDist >= (*iter).fLimitDist)
+		float fX = (*iter).tSphere.x - g_tMonster.tSphere.x;
+		float fY = (*iter).tSphere.y - g_tMonster.tSphere.y;
+		float fDist = sqrtf(fX * fX + fY * fY);
+
+		if (fDist <= (*iter).tSphere.r + g_tMonster.tSphere.r)
 		{
 			iter = g_PlayerBulletList.erase(iter);
 			iterEnd = g_PlayerBulletList.end();
 		}
 
-		else if (800 <= (*iter).rc.l)
+		else if ((*iter).fDist >= (*iter).fLimitDist)
 		{
 			iter = g_PlayerBulletList.erase(iter);
 			iterEnd = g_PlayerBulletList.end();
 		}
+
+		else if (800 <= (*iter).tSphere.x - (*iter).tSphere.r)
+		{
+			iter = g_PlayerBulletList.erase(iter);
+			iterEnd = g_PlayerBulletList.end();
+		}
+
+
 
 		else
 			++iter;
@@ -435,9 +467,8 @@ void Run()
 	iterEnd = g_MonsterBulletList.end();
 	for (iter = g_MonsterBulletList.begin(); iter != iterEnd;)
 	{
-		(*iter).rc.r -= fSpeed;
-		(*iter).rc.l -= fSpeed;
-
+		(*iter).tSphere.x -= fSpeed;
+	
 		(*iter).fDist += fSpeed;
 
 		if ((*iter).fDist >= (*iter).fLimitDist)
@@ -446,18 +477,20 @@ void Run()
 			iterEnd = g_MonsterBulletList.end();
 		}
 
-		else if (0 >= (*iter).rc.r)
+		else if (0 >= (*iter).tSphere.x + (*iter).tSphere.r)
 		{
 			iter = g_MonsterBulletList.erase(iter);
 			iterEnd = g_MonsterBulletList.end();
 		}
-
+		/*
+		//rect 충돌
 		else if (g_tPlayerRC.l <= (*iter).rc.r && (*iter).rc.l <= g_tPlayerRC.r &&
 			g_tPlayerRC.t <= (*iter).rc.b && (*iter).rc.t <= g_tPlayerRC.b)
 		{
 			iter = g_MonsterBulletList.erase(iter);
 			iterEnd = g_MonsterBulletList.end();
-		}
+		}*/
+
 		else
 			++iter;
 	}
@@ -465,8 +498,10 @@ void Run()
 	// 총알 출력
 	//Rectangle(g_hDC, 0, 0, 800, 600);
 	
-	Rectangle(g_hDC, g_tMonster.tRC.l, g_tMonster.tRC.t,
-		g_tMonster.tRC.r, g_tMonster.tRC.b);
+	Ellipse(g_hDC, g_tMonster.tSphere.x - g_tMonster.tSphere.r,
+		g_tMonster.tSphere.y - g_tMonster.tSphere.r,
+		g_tMonster.tSphere.x + g_tMonster.tSphere.r, 
+		g_tMonster.tSphere.y + g_tMonster.tSphere.r);
 
 	Rectangle(g_hDC, g_tPlayerRC.l, g_tPlayerRC.t,
 		g_tPlayerRC.r, g_tPlayerRC.b);
@@ -474,13 +509,19 @@ void Run()
 	iterEnd = g_PlayerBulletList.end();
 	for (iter = g_PlayerBulletList.begin(); iter != iterEnd; ++iter)
 	{
-		Rectangle(g_hDC, (*iter).rc.l, (*iter).rc.t, (*iter).rc.r, (*iter).rc.b);
+		Ellipse(g_hDC, (*iter).tSphere.x - (*iter).tSphere.r,
+			(*iter).tSphere.y - (*iter).tSphere.r,
+			(*iter).tSphere.x + (*iter).tSphere.r,
+			(*iter).tSphere.y + (*iter).tSphere.r);
 	}
 
 	// 몬스터 총알 출력
 	iterEnd = g_MonsterBulletList.end();
 	for (iter = g_MonsterBulletList.begin(); iter != iterEnd; ++iter)
 	{
-		Rectangle(g_hDC, (*iter).rc.l, (*iter).rc.t, (*iter).rc.r, (*iter).rc.b);
+		Ellipse(g_hDC, (*iter).tSphere.x - (*iter).tSphere.r,
+			(*iter).tSphere.y - (*iter).tSphere.r,
+			(*iter).tSphere.x + (*iter).tSphere.r,
+			(*iter).tSphere.y + (*iter).tSphere.r);
 	}
 }
