@@ -46,7 +46,10 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 HWND	g_hWnd;
 HDC		g_hDC;
 bool	g_bLoop = true;
-RECTANGLE	g_tPlayerRC = { 100, 100, 200, 200 };
+SPHERE	g_tPlayer = { 50.f, 50.f, 50.f };
+POINT		g_tGunPos;
+float		g_fGunLength = 70.f;
+float		g_fPlayerAngle;
 MONSTER		g_tMonster;
 
 typedef struct _tagBullet
@@ -107,6 +110,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	g_tMonster.fTime = 0.f;
 	g_tMonster.fLimitTime = 2.f;
 	g_tMonster.iDir = MD_FRONT;
+
+	// 총구 위치
+	g_tGunPos.x = g_tPlayer.x + cosf(g_fPlayerAngle)
+		* g_fGunLength;
+
+	g_tGunPos.y = g_tPlayer.y + sinf(g_fPlayerAngle)
+		* g_fGunLength;
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_BCSD_190315));
 
@@ -310,13 +320,13 @@ void Run()
 	float	fSpeed = 400.f * g_fDeltaTime;
 	if (GetAsyncKeyState('D') & 0x8000)
 	{
-		g_tPlayerRC.l += fSpeed;
+		g_tPlayerRC.x += fSpeed;
 		g_tPlayerRC.r += fSpeed;
 	}
 
 	if (GetAsyncKeyState('A') & 0x8000)
 	{
-		g_tPlayerRC.l -= fSpeed;
+		g_tPlayerRC.x -= fSpeed;
 		g_tPlayerRC.r -= fSpeed;
 	}
 
@@ -503,7 +513,7 @@ void Run()
 		g_tMonster.tSphere.x + g_tMonster.tSphere.r, 
 		g_tMonster.tSphere.y + g_tMonster.tSphere.r);
 
-	Rectangle(g_hDC, g_tPlayerRC.l, g_tPlayerRC.t,
+	Ellipse(g_hDC, g_tPlayerRC.l, g_tPlayerRC.t,
 		g_tPlayerRC.r, g_tPlayerRC.b);
 
 	iterEnd = g_PlayerBulletList.end();
