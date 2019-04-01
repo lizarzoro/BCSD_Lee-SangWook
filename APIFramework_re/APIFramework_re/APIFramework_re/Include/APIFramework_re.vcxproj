@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F10D346A-B428-4C82-B794-2FDA0CBC6D4C}</ProjectGuid>
+    <ProjectGuid>{4FD35A98-17C3-4DFD-ACD6-790B78FE0F88}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>APIFramework2</RootNamespace>
+    <RootNamespace>APIFramework_re</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -77,6 +77,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>../Bin/</OutDir>
+    <TargetName>$(ProjectName)64_Debug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -85,7 +86,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>../Bin/</OutDir>
-    <TargetName>$(ProjectName)64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -148,22 +148,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Scene\Scene.h" />
-    <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scene\Scene.cpp" />
-    <ClCompile Include="Scene\SceneManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="APIFramework2.rc" />
+    <ResourceCompile Include="APIFramework_re.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon1.ico" />

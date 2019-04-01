@@ -14,14 +14,25 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="01.Core">
-      <UniqueIdentifier>{6a29d2c5-a2b4-4479-b949-5759fa41b1ed}</UniqueIdentifier>
+      <UniqueIdentifier>{0682006f-b54d-46df-8040-b6159fd08084}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Scene">
-      <UniqueIdentifier>{dff2e2df-6220-4a7c-9fa8-690adfa6ca75}</UniqueIdentifier>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{3eceec26-a90b-4ee8-baa5-03a2969a3210}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="Game.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Macro.h">
@@ -33,32 +44,9 @@
     <ClInclude Include="Types.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Core.h">
-      <Filter>01.Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\SceneManager.h">
-      <Filter>02. Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Scene.h">
-      <Filter>02. Scene</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Core.cpp">
-      <Filter>01.Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\SceneManager.cpp">
-      <Filter>02. Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Scene.cpp">
-      <Filter>02. Scene</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="APIFramework2.rc">
+    <ResourceCompile Include="APIFramework_re.rc">
       <Filter>리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>

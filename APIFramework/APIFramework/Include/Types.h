@@ -13,7 +13,7 @@ typedef struct _tagResolution
 
 	_tagResolution(int x, int y) :
 		iW(x), iH(y) {}
-}RESOLUTION, *pRESOLUTION;
+}RESOLUTION, *PRESOLUTION;
 
 typedef struct _tagPosition
 {
@@ -108,8 +108,7 @@ typedef struct _tagPosition
 		tPos.x = x - pos.x;
 		tPos.y = y - pos.y;
 		return tPos;
-	}
-
+	} 
 	_tagPosition operator - (float f[2])	const
 	{
 		_tagPosition tPos;
@@ -117,7 +116,7 @@ typedef struct _tagPosition
 		tPos.y = y - f[1];
 		return tPos;
 	}
-
+	 
 	_tagPosition operator - (float f)	const
 	{
 		_tagPosition tPos;
