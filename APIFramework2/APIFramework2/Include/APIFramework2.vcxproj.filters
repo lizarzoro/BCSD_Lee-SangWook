@@ -19,6 +19,9 @@
     <Filter Include="02. Scene">
       <UniqueIdentifier>{dff2e2df-6220-4a7c-9fa8-690adfa6ca75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Core\01.Timer">
+      <UniqueIdentifier>{a844bfbb-5141-4c3d-bef5-378bf2c1e805}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -42,6 +45,15 @@
     <ClInclude Include="Scene\Scene.h">
       <Filter>02. Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Flag.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\InGameScene.h">
+      <Filter>02. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Timer.h">
+      <Filter>01.Core\01.Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -55,6 +67,12 @@
     </ClCompile>
     <ClCompile Include="Scene\Scene.cpp">
       <Filter>02. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\InGameScene.cpp">
+      <Filter>02. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Timer.cpp">
+      <Filter>01.Core\01.Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

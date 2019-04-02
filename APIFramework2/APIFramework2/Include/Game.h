@@ -8,4 +8,5 @@ using namespace std;
 
 #include "resource.h"
 #include "Macro.h"
+#include "Flag.h"
 #include "Types.h"

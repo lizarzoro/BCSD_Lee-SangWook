@@ -1,8 +1,16 @@
 #pragma once
+#include "../Game.h"
+
 class CScene
 {
-public:
+protected:
+	friend class CSceneManager;
+
+protected: 
 	CScene();
-	~CScene();
+	virtual ~CScene() = 0; // 추상클래스 - 객체생성 불가
+
+public:
+	virtual bool Init();
 };
 
