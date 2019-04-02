@@ -13,7 +13,7 @@ CScene::CScene()
 
 CScene::~CScene()
 {
-	Safe_Delete_VecList(m_LayerList);
+	//Safe_Delete_VecList(m_LayerList);
 }
 
 CLayer * CScene::CreateLayer(const string & strTag, int iZOrder)
@@ -39,24 +39,70 @@ bool CScene::Init()
 
 void CScene::Input(float fDeltaTime)
 {
+	list<CLayer*>::iterator iter;
+	list<CLayer*>::iterator iterEnd = m_LayerList.end();
+
+	for (iter = m_LayerList.begin(); iter != iterEnd;)
+	{
+		{
+			(*iter)->Input(fDeltaTime);
+		}
+	}
 }
 
 int CScene::Update(float fDeltaTime)
 {
+	list<CLayer*>::iterator iter;
+	list<CLayer*>::iterator iterEnd = m_LayerList.end();
+
+	for (iter = m_LayerList.begin(); iter != iterEnd;)
+	{
+		{
+			(*iter)->Update(fDeltaTime);
+		}
+	}
 	return 0;
 }
 
 int CScene::LateUpdate(float fDeltaTime)
 {
+	list<CLayer*>::iterator iter;
+	list<CLayer*>::iterator iterEnd = m_LayerList.end();
+
+	for (iter = m_LayerList.begin(); iter != iterEnd;)
+	{
+		{
+			(*iter)->LateUpdate(fDeltaTime);
+		}
+	}
 	return 0;
 }
 
 void CScene::Collision(float fDeltaTime)
 {
+	list<CLayer*>::iterator iter;
+	list<CLayer*>::iterator iterEnd = m_LayerList.end();
+
+	for (iter = m_LayerList.begin(); iter != iterEnd;)
+	{
+		{
+			(*iter)->Collision(fDeltaTime);
+		}
+	}
 }
 
-void CScene::Render(float fDeltaTime)
+
+void CScene::Render(HDC hDC, float fDeltaTime)
 {
+	list<CLayer*>::iterator iter;
+	list<CLayer*>::iterator iterEnd = m_LayerList.end();
+
+	for (iter = m_LayerList.begin(); iter != iterEnd;)
+	{
+		{
+			(*iter)->Render(hDC, fDeltaTime);
+		}
+	}
 }
 
 bool CScene::LayerSort(CLayer * pL1, CLayer * pL2)

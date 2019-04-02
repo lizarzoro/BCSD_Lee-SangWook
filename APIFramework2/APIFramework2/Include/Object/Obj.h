@@ -83,5 +83,13 @@ public:
 		m_tPivot.x = x;
 		m_tPivot.y = y;
 	}
+	
+public:
+	virtual bool Init();
+	virtual void Input(float fDeltaTime);
+	virtual int Update(float fDeltaTime);
+	virtual int LateUpdate(float fDeltaTime);
+	virtual void Collision(float fDeltaTime);
+	virtual void Render(HDC hDC, float fDeltaTime);
 };
 

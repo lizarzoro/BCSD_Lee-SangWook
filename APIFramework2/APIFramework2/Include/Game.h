@@ -19,7 +19,7 @@ void Safe_Release_VecList(T& p)
 
 	for (iter = p.begin(); iter != iterEnd; ++iter)
 	{
-		SAFE_DELETE((*iter));
+		SAFE_RELEASE((*iter));
 	}
 
 	p.clear();

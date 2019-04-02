@@ -22,7 +22,7 @@ public:
 	virtual int Update(float fDeltaTime);
 	virtual int LateUpdate(float fDeltaTime);
 	virtual void Collision(float fDeltaTime);
-	virtual void Render(float fDeltaTime);
+	virtual void Render(HDC hDC,float fDeltaTime);
 
 public:
 	static bool LayerSort(class CLayer* pL1, class CLayer* pL2);

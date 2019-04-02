@@ -114,7 +114,7 @@ void CCore::Collision(float fDeltaTime)
 }
 
 
-void CCore::Render(HDC hDC, float fDeltaTime)
+void CCore::Render(float fDeltaTime)
 {
 	GET_SINGLE(CSceneManager)->Render(m_hDC, fDeltaTime);
 	//GET_SINGLE(CSceneManager)->Render(pBackBuffer->GetDC(), fDeltaTime);
