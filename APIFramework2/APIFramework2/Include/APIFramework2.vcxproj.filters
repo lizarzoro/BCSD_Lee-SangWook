@@ -22,6 +22,12 @@
     <Filter Include="01.Core\01.Timer">
       <UniqueIdentifier>{a844bfbb-5141-4c3d-bef5-378bf2c1e805}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Scene\01.Layer">
+      <UniqueIdentifier>{7c0cf2da-b864-491e-b26f-5871824aa893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object">
+      <UniqueIdentifier>{1046f679-78bf-48c8-a187-edb6984468d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -54,6 +60,12 @@
     <ClInclude Include="Core\Timer.h">
       <Filter>01.Core\01.Timer</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Layer.h">
+      <Filter>02. Scene\01.Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Obj.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -73,6 +85,12 @@
     </ClCompile>
     <ClCompile Include="Core\Timer.cpp">
       <Filter>01.Core\01.Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Layer.cpp">
+      <Filter>02. Scene\01.Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Obj.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ bool CTimer::Init(HWND hWnd)
 	QueryPerformanceFrequency(&m_tSecond);
 	QueryPerformanceCounter(&m_tTime);
 
-	m_hWnd = hWnd;
+	//m_hWnd = hWnd;
 	m_fDeltaTime = 0.f;
 	m_fFPS = 0.f;
 	m_fFPSTime = 0.f;
@@ -48,7 +48,7 @@ void CTimer::Update()
 		char strFPS[64] = {};
 		sprintf_s(strFPS, "FPS : %.f\n", m_fFPS);
 		// _cprintf(strFPS);
-		SetWindowTextA(m_hWnd, strFPS);
+		//SetWindowTextA(m_hWnd, strFPS);
 		OutputDebugStringA(strFPS);
 #endif // _DEBUG
 	}
