@@ -27,16 +27,17 @@ public:
 	{
 		return m_fFPS;
 	}
-//
-//	float GetTimeScale() const noexcept
-//	{
-//		return m_fTimeScale;
-//	}
-//
-//	void SetTimeScale(float fTimeScale)
-//	{
-//		m_fTimeScale = fTimeScale;
-//	}
+
+	float GetTimeScale() const noexcept
+	{
+		return m_fTimeScale;
+	}
+
+public:
+	void SetTimeScale(float fTimeScale)
+	{
+		m_fTimeScale = fTimeScale;
+	}
 
 	DECLARE_SINGLE(CTimer)
 };

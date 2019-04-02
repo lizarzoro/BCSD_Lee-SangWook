@@ -2,7 +2,8 @@
 
 
 
-CObj::CObj()
+CObj::CObj()	:
+	m_iRef(1)
 {
 }
 

@@ -12,7 +12,7 @@ using namespace std;
 #include "Types.h"
 
 template <typename T>
-void Safe_Delete_VecList(T& p)
+void Safe_Release_VecList(T& p)
 {
 	T::iterator iter;
 	T::iterator iterEnd = p.end();

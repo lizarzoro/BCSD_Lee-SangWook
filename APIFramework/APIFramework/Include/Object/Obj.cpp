@@ -7,7 +7,7 @@
 #include "../Resources/ResourcesManager.h"
 #include "../Resources/Texture.h"
 #include "../Core/Camera.h"
-#include "../Animation/Animation.h"
+//#include "../Animation/Animation.h"
 
 list<CObj*> CObj::m_ObjList;
 

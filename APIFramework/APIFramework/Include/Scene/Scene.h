@@ -6,7 +6,7 @@ class CScene
 {
 private:
 	static unordered_map<string, class CObj*> m_mapPrototype[SC_END];
-
+	
 protected:
 	CScene();
 	virtual ~CScene() = 0;

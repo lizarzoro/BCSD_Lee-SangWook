@@ -12,4 +12,5 @@ CLayer::CLayer()	:
 
 CLayer::~CLayer()
 {
+	Safe_Release_VecList(m_ObjList);
 }
