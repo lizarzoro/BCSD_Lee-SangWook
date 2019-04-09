@@ -230,25 +230,3 @@ typedef struct _tagPixel
 	unsigned char g;
 	unsigned char b;
 }PIXEL, *pPIXEL;
-
-// 局聪皋捞记 府家胶 包府侩 备炼眉
-typedef struct _tagAnimationClip
-{
-	vector<class CTexture*>	vecTexture;
-	ANIMATION_TYPE		eType;
-	ANIMATION_OPTION	eOption;
-	float		fAnimationTime;
-	float		fAnimationLimitTime;
-	float		fOptionTime;
-	float		fOptionLimitTime;
-	float		fAnimationFrameTime;
-	int			iFrameX;
-	int			iFrameY;
-	int			iFrameMaxX;
-	int			iFrameMaxY;
-	int			iStartX;
-	int			iStartY;
-	int			iLengthX;
-	int			iLengthY;
-	_SIZE		tFrameSize;
-}ANIMATIONCLIP, *pANIMATIONCLIP;

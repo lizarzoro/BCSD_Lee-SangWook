@@ -61,11 +61,11 @@
     <Filter Include="01.Core\005.Math">
       <UniqueIdentifier>{0261c4f0-46e9-4533-9cbc-002aeb554cd2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06.Animation">
-      <UniqueIdentifier>{59246abe-072f-4a15-b126-88be59663267}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Object\001. MoveObj\0004. UI">
       <UniqueIdentifier>{966856b0-805b-4e9a-a6bc-b5d12a6b9971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Collider">
+      <UniqueIdentifier>{312b9691-adfc-4d22-a216-882a2c80aa0b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +132,6 @@
     <ClCompile Include="Math.cpp">
       <Filter>01.Core\005.Math</Filter>
     </ClCompile>
-    <ClCompile Include="Animation\Animation.cpp">
-      <Filter>06.Animation</Filter>
-    </ClCompile>
     <ClCompile Include="Object\UIPanel.cpp">
       <Filter>03.Object\001. MoveObj\0004. UI</Filter>
     </ClCompile>
@@ -149,6 +146,15 @@
     </ClCompile>
     <ClCompile Include="Object\Mouse.cpp">
       <Filter>03.Object\001. MoveObj\0004. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider\Collider1.cpp">
+      <Filter>05.Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider\CollisionManager1.cpp">
+      <Filter>05.Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider\ColliderRect1.cpp">
+      <Filter>05.Collider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +233,6 @@
     <ClInclude Include="Math.h">
       <Filter>01.Core\005.Math</Filter>
     </ClInclude>
-    <ClInclude Include="Animation\Animation.h">
-      <Filter>06.Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Object\UI.h">
       <Filter>03.Object\001. MoveObj\0004. UI</Filter>
     </ClInclude>
@@ -244,6 +247,15 @@
     </ClInclude>
     <ClInclude Include="Object\Mouse.h">
       <Filter>03.Object\001. MoveObj\0004. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider\Collider1.h">
+      <Filter>05.Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider\CollisionManager1.h">
+      <Filter>05.Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider\ColliderRect1.h">
+      <Filter>05.Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

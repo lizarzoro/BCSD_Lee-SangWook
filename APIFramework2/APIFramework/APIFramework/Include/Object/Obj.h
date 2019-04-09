@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Ref.h"
-#include "../Collider/Collider.h"
+#include "../Collider/Collider1.h"
 
 class CObj	: public CRef
 {
@@ -15,10 +15,11 @@ protected:
 	CObj(const CObj& obj);
 	virtual ~CObj();
 
+	list<CCollider1*> m_ColliderList;
+
 	class CScene*		m_pScene;
 	class CLayer*		m_pLayer;
 	class CTexture*		m_pTexture;
-	class CAnimation*	m_pAnimation;
 
 	string		m_strTag;
 	POSITION	m_tPos;
@@ -171,23 +172,6 @@ public:
 	static CObj* CreateCloneObj(const string& strPrototypeKey, 
 		const string& strTag, SCENE_CREATE sc, class CLayer* pLayer = NULL);
 
-	class CAnimation* CreateAnimation(const string& strTag);
-	// Atlas 형식으로 추가
-	bool AddAnimationClip(const string& strName, ANIMATION_TYPE eType,
-		ANIMATION_OPTION eOption, float fAnimationLimitTime,
-		int iFrameMaxX, int iFrameMaxY, int iStartX, int iStartY,
-		int iLengthX, int iLengthY, float fOptionLimitTime,
-		const string& strTexKey, const wchar_t* pFileName,
-		const string& strPathKey = TEXTURE_PATH);
-	// Frame 형식으로 추가
-	bool AddAnimationClip(const string& strName, ANIMATION_TYPE eType,
-		ANIMATION_OPTION eOption, float fAnimationLimitTime,
-		int iFrameMaxX, int iFrameMaxY, int iStartX, int iStartY,
-		int iLengthX, int iLengthY, float fOptionLimitTime,
-		const string& strTexKey, const vector<wstring>& vecFileName,
-		const string& strPathKey = TEXTURE_PATH);
-
-	void SetAnimationClipColorKey(const string& strClip, unsigned char r, unsigned char g, unsigned char b);
 
 };
 

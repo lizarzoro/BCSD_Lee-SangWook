@@ -6,7 +6,7 @@
 #include "Resources\Texture.h"
 #include "Core\Camera.h"
 #include "Core\Input.h"
-#include "Collider\CollisionManager.h"
+#include "Collider\CollisionManager1.h"
 #include "Object\Mouse.h"
 
 CCore*	CCore::m_pInst = NULL;
@@ -27,7 +27,7 @@ CCore::CCore()
 CCore::~CCore()
 {
 	DESTROY_SINGLE(CSceneManager);
-	DESTROY_SINGLE(CCollisionManager);
+	DESTROY_SINGLE(CCollisionManager1);
 	DESTROY_SINGLE(CInput);
 	DESTROY_SINGLE(CCamera);
 	DESTROY_SINGLE(CResourcesManager);
@@ -126,7 +126,7 @@ void CCore::Collision(float fDeltaTime)
 {
 	GET_SINGLE(CSceneManager)->Collision(fDeltaTime);
 
-	GET_SINGLE(CCollisionManager)->Collision(fDeltaTime);
+	GET_SINGLE(CCollisionManager1)->Collision(fDeltaTime);
 }
 
 void CCore::Render(float fDeltaTime)

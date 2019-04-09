@@ -7,7 +7,7 @@
 #include "../Resources/ResourcesManager.h"
 #include "../Resources/Texture.h"
 #include "../Core/Camera.h"
-#include "../Animation/Animation.h"
+#include "../Collider/Collider1.h"
 
 list<CObj*> CObj::m_ObjList;
 
@@ -20,24 +20,19 @@ CObj::CObj(const CObj & obj)
 {
 	*this = obj;
 
-	if (obj.m_pAnimation)
-		m_pAnimation = obj.m_pAnimation->Clone();
-
-	m_fGravityTime = 0.f;
-
 	if (m_pTexture)
 		m_pTexture->AddRef();
 
 	m_ColliderList.clear();
 
-	list<CCollider*>::const_iterator iter;
-	list<CCollider*>::const_iterator iterEnd = obj.m_ColliderList.end();
+	list<CCollider1*>::const_iterator iter;
+	list<CCollider1*>::const_iterator iterEnd = obj.m_ColliderList.end();
 
 	for (iter = obj.m_ColliderList.begin(); iter != iterEnd; ++iter)
 	{
-		CCollider* pColl = (*iter)->Clone();
+		CCollider1* pColl = (*iter)->Clone();
 
-		pColl->SetObj(this);
+		//pColl->SetObj(this);
 
 		m_ColliderList.push_back(pColl);
 	}
@@ -300,60 +295,6 @@ CObj * CObj::CreateCloneObj(const string & strPrototypeKey,
 	return pObj;
 }
 
-CAnimation * CObj::CreateAnimation(const string & strTag)
-{
-	SAFE_RELEASE(m_pAnimation);
 
-	m_pAnimation = new CAnimation;
 
-	m_pAnimation->SetTag(strTag);
-	m_pAnimation->SetObj(this);
 
-	if (!m_pAnimation->Init())
-	{
-		SAFE_RELEASE(m_pAnimation);
-		return NULL;
-	}
-
-	m_pAnimation->AddRef();
-
-	return m_pAnimation;
-}
-
-bool CObj::AddAnimationClip(const string & strName, ANIMATION_TYPE eType,
-	ANIMATION_OPTION eOption, float fAnimationLimitTime, int iFrameMaxX,
-	int iFrameMaxY, int iStartX, int iStartY, int iLengthX, int iLengthY,
-	float fOptionLimitTime, const string & strTexKey,
-	const wchar_t * pFileName, const string & strPathKey)
-{
-	if(!m_pAnimation)
-		return false;
-
-	m_pAnimation->AddClip(strName, eType, eOption, fAnimationLimitTime,
-		iFrameMaxX, iFrameMaxY, iStartX, iStartY, iLengthX, iLengthY,
-		fOptionLimitTime, strTexKey, pFileName, strPathKey);
-
-	return true;
-}
-
-bool CObj::AddAnimationClip(const string & strName, ANIMATION_TYPE eType,
-	ANIMATION_OPTION eOption, float fAnimationLimitTime, int iFrameMaxX,
-	int iFrameMaxY, int iStartX, int iStartY, int iLengthX, int iLengthY,
-	float fOptionLimitTime, const string & strTexKey,
-	const vector<wstring>& vecFileName, const string & strPathKey)
-{
-	if (!m_pAnimation)
-		return false;
-
-	m_pAnimation->AddClip(strName, eType, eOption, fAnimationLimitTime,
-		iFrameMaxX, iFrameMaxY, iStartX, iStartY, iLengthX, iLengthY,
-		fOptionLimitTime, strTexKey, vecFileName, strPathKey);
-
-	return true;
-}
-
-void CObj::SetAnimationClipColorKey(const string & strClip, unsigned char r, unsigned char g, unsigned char b)
-{
-	if (m_pAnimation)
-		m_pAnimation->SetClipColorKey(strClip, r, g, b);
-}

@@ -149,7 +149,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Collider\Collider1.cpp" />
+    <ClCompile Include="Collider\ColliderRect1.cpp" />
+    <ClCompile Include="Collider\CollisionManager1.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Core\Camera.cpp" />
     <ClCompile Include="Core\Input.cpp" />
@@ -178,7 +180,9 @@
     <ClCompile Include="Scene\StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation\Animation.h" />
+    <ClInclude Include="Collider\Collider1.h" />
+    <ClInclude Include="Collider\ColliderRect1.h" />
+    <ClInclude Include="Collider\CollisionManager1.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\Input.h" />
