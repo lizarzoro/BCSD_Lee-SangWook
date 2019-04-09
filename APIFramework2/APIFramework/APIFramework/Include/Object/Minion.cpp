@@ -1,6 +1,6 @@
 #include "Minion.h"
 #include "../Core.h"
-#include "../Collider/ColliderRect.h"
+#include "../Collider/ColliderRect1.h"
 #include "Bullet.h"
 #include "../Scene/Scene.h"
 
@@ -51,11 +51,11 @@ bool CMinion::Init()
 
 	m_eDir = MD_FRONT;
 
-	CColliderRect* pRC = AddCollider<CColliderRect>("Minion");
+	CColliderRect1* pRC = AddCollider<CColliderRect1>("Minion");
 
 	pRC->SetRect(-50.f, -50.f, 50.f, 50.f);
-	pRC->AddCollisionFunction(CS_ENTER, this,
-		&CMinion::CollisionBullet);
+	//pRC->AddCollisionFunction(CS_ENTER, this,
+		//&CMinion::CollisionBullet);
 
 	SAFE_RELEASE(pRC);
 

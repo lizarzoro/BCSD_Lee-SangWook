@@ -5,7 +5,7 @@
 #include "../Object/Stage.h"
 #include "Layer.h"
 #include "../Core/Camera.h"
-#include "../Collider/ColliderPixel.h"
+//#include "../Collider/ColliderPixel1.h"
 
 
 CInGameScene::CInGameScene()
@@ -36,7 +36,7 @@ bool CInGameScene::Init()
 
 	SAFE_RELEASE(pMinion);
 
-	// 총알 프로토타입을 만들어준다.
+	// 총알 프로토타입
 	CBullet* pBullet = CScene::CreatePrototype<CBullet>("Bullet", m_eSceneType);
 
 	pBullet->SetSize(50.f, 50.f);
@@ -47,11 +47,11 @@ bool CInGameScene::Init()
 
 	CStage* pStage = CObj::CreateObj<CStage>("Stage", pStageLayer);
 
-	CColliderPixel* pPixel = pStage->AddCollider<CColliderPixel>("StageColl");
+	//CColliderPixel* pPixel = pStage->AddCollider<CColliderPixel>("StageColl");
 
-	pPixel->SetPixelInfo("Stage1.bmp");
+	//pPixel->SetPixelInfo("Stage1.bmp");
 
-	SAFE_RELEASE(pPixel);
+	//SAFE_RELEASE(pPixel);
 
 	SAFE_RELEASE(pStage);
 

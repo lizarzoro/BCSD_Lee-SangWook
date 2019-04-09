@@ -1,6 +1,7 @@
 #include "Bullet.h"
 #include "../Resources/Texture.h"
-#include "../Collider/ColliderSphere.h"
+#include "../Collider/ColliderRect1.h"
+//#include "../Collider/ColliderSphere.h"
 
 CBullet::CBullet()	:
 	m_fDist(0.f), m_fLimitDist(500.f)
@@ -28,11 +29,11 @@ bool CBullet::Init()
 
 	m_pTexture->SetColorKey(0, 255, 0);
 
-	CColliderSphere* pSphere = AddCollider<CColliderSphere>("Bullet");
+	CColliderRect1* pRC = AddCollider<CColliderRect1>("Minion");
 
-	pSphere->SetSphere(POSITION(0.f, 0.f), 25.f);
+	pRC->SetRect(-25.f, -25.f, 25.f, 25.f);
 
-	SAFE_RELEASE(pSphere);
+	SAFE_RELEASE(pRC);
 
 	return true;
 }
@@ -73,11 +74,11 @@ CBullet * CBullet::Clone()
 	return new CBullet(*this);
 }
 
-void CBullet::Hit(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
-{
-	if (GetTag() == "PlayerBullet" && pDest->GetTag() == "Minion")
-		Die();
-
-	else if (GetTag() == "MinionBullet" && pDest->GetTag() == "Player")
-		Die();
-}
+//void CBullet::Hit(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
+//{
+//	if (GetTag() == "PlayerBullet" && pDest->GetTag() == "Minion")
+//		Die();
+//
+//	else if (GetTag() == "MinionBullet" && pDest->GetTag() == "Player")
+//		Die();
+//}

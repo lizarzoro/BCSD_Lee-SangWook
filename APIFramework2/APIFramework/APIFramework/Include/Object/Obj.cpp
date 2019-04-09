@@ -12,7 +12,7 @@
 list<CObj*> CObj::m_ObjList;
 
 CObj::CObj()	:
-	m_pTexture(NULL), m_bIsPhysics(false), m_fGravityTime(0.f), m_pAnimation(NULL)
+	m_pTexture(NULL), m_bIsPhysics(false), m_fGravityTime(0.f)
 {
 }
 
@@ -40,7 +40,7 @@ CObj::CObj(const CObj & obj)
 
 CObj::~CObj()
 {
-	SAFE_RELEASE(m_pAnimation);
+	//SAFE_RELEASE(m_pAnimation);
 	Safe_Release_VecList(m_ColliderList);
 	SAFE_RELEASE(m_pTexture);
 }
@@ -54,16 +54,16 @@ void CObj::SetTexture(CTexture * pTexture)
 		pTexture->AddRef();
 }
 
-void CObj::SetTexture(const string & strKey, const wchar_t * pFileName, const string & strPathKey)
-{
-	SAFE_RELEASE(m_pTexture);
-	m_pTexture = GET_SINGLE(CResourcesManager)->LoadTexture(strKey, pFileName, strPathKey);
-}
-
-void CObj::SetColorKey(unsigned char r, unsigned char g, unsigned char b)
-{
-	m_pTexture->SetColorKey(r, g, b);
-}
+//void CObj::SetTexture(const string & strKey, const wchar_t * pFileName, const string & strPathKey)
+//{
+//	SAFE_RELEASE(m_pTexture);
+//	m_pTexture = GET_SINGLE(CResourcesManager)->LoadTexture(strKey, pFileName, strPathKey);
+//}
+//
+//void CObj::SetColorKey(unsigned char r, unsigned char g, unsigned char b)
+//{
+//	m_pTexture->SetColorKey(r, g, b);
+//}
 
 void CObj::Input(float fDeltaTime)
 {
@@ -71,8 +71,8 @@ void CObj::Input(float fDeltaTime)
 
 int CObj::Update(float fDeltaTime)
 {
-	list<CCollider*>::iterator iter;
-	list<CCollider*>::iterator iterEnd = m_ColliderList.end();
+	list<CCollider1*>::iterator iter;
+	list<CCollider1*>::iterator iterEnd = m_ColliderList.end();
 
 	for (iter = m_ColliderList.begin(); iter != iterEnd;)
 	{
@@ -95,16 +95,16 @@ int CObj::Update(float fDeltaTime)
 			++iter;
 	}
 
-	if (m_pAnimation)
+	/*if (m_pAnimation)
 		m_pAnimation->Update(fDeltaTime);
-
+*/
 	return 0;
 }
 
 int CObj::LateUpdate(float fDeltaTime)
 {
-	list<CCollider*>::iterator iter;
-	list<CCollider*>::iterator iterEnd = m_ColliderList.end();
+	list<CCollider1*>::iterator iter;
+	list<CCollider1*>::iterator iterEnd = m_ColliderList.end();
 
 	for (iter = m_ColliderList.begin(); iter != iterEnd;)
 	{
@@ -155,7 +155,7 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 	else if (tPos.y > tClientRS.iH)
 		bInClient = false;
 
-	if (m_pTexture && bInClient)
+	/*if (m_pTexture && bInClient)
 	{
 		POSITION tImagePos;
 
@@ -184,11 +184,11 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 				m_tSize.x, m_tSize.y,
 				m_pTexture->GetDC(), tImagePos.x, tImagePos.y, SRCCOPY);
 		}
-	}
+	}*/
 	if (bInClient)
 	{
-		list<CCollider*>::iterator iter;
-		list<CCollider*>::iterator iterEnd = m_ColliderList.end();
+		list<CCollider1*>::iterator iter;
+		list<CCollider1*>::iterator iterEnd = m_ColliderList.end();
 
 		for (iter = m_ColliderList.begin(); iter != iterEnd;)
 		{

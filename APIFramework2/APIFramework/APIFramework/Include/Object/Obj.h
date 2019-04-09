@@ -17,6 +17,33 @@ protected:
 
 	list<CCollider1*> m_ColliderList;
 
+public:
+	template <typename T>
+	T* AddCollider(const string& strTag)
+	{
+		T* pCollider = new T;
+
+		pCollider->SetObj(this);
+		pCollider->SetTag(strTag);
+
+		if (!pCollider->Init())
+		{
+			SAFE_RELEASE(pCollider);
+			return NULL;
+		}
+
+		pCollider->AddRef();
+		m_ColliderList.push_back(pCollider);
+
+		return pCollider;
+	}
+
+	bool CheckCollider() 
+	{ 
+		return !m_ColliderList.empty(); 
+	}
+
+protected:
 	class CScene*		m_pScene;
 	class CLayer*		m_pLayer;
 	class CTexture*		m_pTexture;
@@ -48,10 +75,10 @@ public:
 	template <typename T>
 	void AddCollisionFunction(const string& strTag, 
 		COLLISION_STATE eState, T* pObj,
-		void(T::*pFunc)(CCollider*, CCollider*, float))
+		void(T::*pFunc)(CCollider1*, CCollider1*, float))
 	{
-		list<CCollider*>::iterator iter;
-		list<CCollider*>::iterator iterEnd = m_ColliderList.end();
+		list<CCollider1*>::iterator iter;
+		list<CCollider1*>::iterator iterEnd = m_ColliderList.end();
 
 		for (iter = m_ColliderList.begin(); iter != iterEnd; ++iter)
 		{
@@ -126,7 +153,7 @@ public:
 	void SetTexture(const string& strKey,
 		const wchar_t* pFileName = NULL,
 		const string& strPathKey = TEXTURE_PATH);
-	void SetColorKey(unsigned char r, unsigned char g, unsigned char b);
+	//void SetColorKey(unsigned char r, unsigned char g, unsigned char b);
 
 public:
 	virtual bool	Init() = 0;
