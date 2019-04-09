@@ -50,23 +50,6 @@ CObj::~CObj()
 	SAFE_RELEASE(m_pTexture);
 }
 
-CCollider * CObj::GetCollider(const string & strTag)
-{
-	list<CCollider*>::iterator iter;
-	list<CCollider*>::iterator iterEnd = m_ColliderList.end();
-
-	for (iter = m_ColliderList.begin(); iter != iterEnd; ++iter)
-	{
-		if ((*iter)->GetTag() == strTag)
-		{
-			(*iter)->AddRef();
-			return *iter;
-		}
-	}
-
-	return NULL;
-}
-
 void CObj::SetTexture(CTexture * pTexture)
 {
 	SAFE_RELEASE(m_pTexture);

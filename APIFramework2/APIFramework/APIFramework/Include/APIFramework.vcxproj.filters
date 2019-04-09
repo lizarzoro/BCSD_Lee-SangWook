@@ -58,6 +58,12 @@
     <Filter Include="01.Core\004.Input">
       <UniqueIdentifier>{e21da549-dca8-476a-a4db-12c9200c32ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Core\005.Math">
+      <UniqueIdentifier>{0261c4f0-46e9-4533-9cbc-002aeb554cd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Animation">
+      <UniqueIdentifier>{59246abe-072f-4a15-b126-88be59663267}</UniqueIdentifier>
+    </Filter>
     <Filter Include="03.Object\001. MoveObj\0004. UI">
       <UniqueIdentifier>{966856b0-805b-4e9a-a6bc-b5d12a6b9971}</UniqueIdentifier>
     </Filter>
@@ -122,6 +128,12 @@
     </ClCompile>
     <ClCompile Include="Core\Input.cpp">
       <Filter>01.Core\004.Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>01.Core\005.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Animation.cpp">
+      <Filter>06.Animation</Filter>
     </ClCompile>
     <ClCompile Include="Object\UIPanel.cpp">
       <Filter>03.Object\001. MoveObj\0004. UI</Filter>
@@ -211,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="Core\Input.h">
       <Filter>01.Core\004.Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>01.Core\005.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Animation.h">
+      <Filter>06.Animation</Filter>
     </ClInclude>
     <ClInclude Include="Object\UI.h">
       <Filter>03.Object\001. MoveObj\0004. UI</Filter>

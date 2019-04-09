@@ -18,7 +18,7 @@ CCore::CCore()
 	// _CrtSetBreakAlloc(313);
 
 #ifdef _DEBUG
-	// 콘솔 창을 생성시키는 함수이다.
+	// 콘솔 창 생성
 	AllocConsole();
 #endif // _DEBUG
 }

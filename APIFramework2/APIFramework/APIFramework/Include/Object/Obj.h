@@ -15,8 +15,6 @@ protected:
 	CObj(const CObj& obj);
 	virtual ~CObj();
 
-	list<CCollider*> m_ColliderList;
-
 	class CScene*		m_pScene;
 	class CLayer*		m_pLayer;
 	class CTexture*		m_pTexture;
@@ -44,8 +42,7 @@ public:
 	_SIZE GetSize() const { return m_tSize; }
 	POSITION GetPivot() const { return m_tPivot; }
 
-	const list <CCollider*>* GetColliderList() const { return &m_ColliderList; }
-	CCollider* GetCollider(const string& strTag);
+
 
 	template <typename T>
 	void AddCollisionFunction(const string& strTag, 
@@ -145,28 +142,9 @@ public:
 	static void EraseObj(const string& strTag);
 	static void EraseObj();
 
-	template <typename T>
-	T* AddCollider(const string& strTag)
-	{
-		T* pCollider = new T;
+	
 
-		pCollider->SetObj(this);
-		pCollider->SetTag(strTag);
-
-		if (!pCollider->Init())
-		{
-			SAFE_RELEASE(pCollider);
-			return NULL;
-		}
-
-		pCollider->AddRef();
-		m_ColliderList.push_back(pCollider);
-
-		return pCollider;
-	}
-
-	bool CheckCollider() { return !m_ColliderList.empty(); }
-
+	
 	template <typename T>
 	static T* CreateObj(const string& strTag, class CLayer* pLayer = NULL)
 	{
