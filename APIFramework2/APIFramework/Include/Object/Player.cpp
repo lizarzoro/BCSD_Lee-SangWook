@@ -4,7 +4,7 @@
 #include "Bullet.h"
 #include "../Collider/ColliderRect.h"
 #include "../Core/Camera.h"
-//#include "../Animation/Animation.h"
+#include "../Animation/Animation.h"
 #include "../Scene/Scene.h"
 
 CPlayer::CPlayer()

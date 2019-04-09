@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "../Object/Mouse.h"
-//#include "../Animation/Animation.h"
+#include "../Animation/Animation.h"
 #include "../Scene/Layer.h"
 #include "../Collider/CollisionManager.h"
 
