@@ -28,7 +28,7 @@ void CCollisionManager::Collision(float fDeltaTime)
 		return;
 	}
 
-	// 오브젝트간 충돌처리를 한다.
+	// 오브젝트간 충돌처리
 	list<CObj*>::iterator iter;
 	list<CObj*>::iterator iterEnd = m_CollisionList.end();
 	--iterEnd;

@@ -27,7 +27,7 @@ CCore::CCore()
 CCore::~CCore()
 {
 	DESTROY_SINGLE(CSceneManager);
-	DESTROY_SINGLE(CCollisionManager1);
+	DESTROY_SINGLE(CCollisionManager);
 	DESTROY_SINGLE(CInput);
 	DESTROY_SINGLE(CCamera);
 	DESTROY_SINGLE(CResourcesManager);
@@ -126,7 +126,7 @@ void CCore::Collision(float fDeltaTime)
 {
 	GET_SINGLE(CSceneManager)->Collision(fDeltaTime);
 
-	GET_SINGLE(CCollisionManager1)->Collision(fDeltaTime);
+	GET_SINGLE(CCollisionManager)->Collision(fDeltaTime);
 }
 
 void CCore::Render(float fDeltaTime)
@@ -232,3 +232,5 @@ int CCore::Run()
 
 	return (int)msg.wParam;
 }
+
+

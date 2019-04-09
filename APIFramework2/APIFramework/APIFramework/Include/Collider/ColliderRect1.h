@@ -15,10 +15,6 @@ private:
 protected:
 	friend class CObj;
 
-	CColliderRect1();
-	CColliderRect1(const CColliderRect1& coll);
-	virtual ~CColliderRect1();
-
 public:
 	RECTANGLE GetInfo() const { return m_tInfo; }
 	RECTANGLE GetWorldInfo() const { return m_tWorldInfo; }

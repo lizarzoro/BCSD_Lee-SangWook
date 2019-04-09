@@ -34,3 +34,10 @@ enum COLLISION_STATE
 	CS_LEAVE,
 	CS_END
 };
+
+// Scene Change
+enum SCENE_CHANGE
+{
+	SC_NONE,
+	SC_CHANGE
+};

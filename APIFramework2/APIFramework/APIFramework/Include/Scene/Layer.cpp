@@ -1,6 +1,6 @@
 #include "Layer.h"
 #include "../Object/Obj.h"
-#include "../Collider/CollisionManager.h"
+#include "../Collider/CollisionManager1.h"
 
 CLayer::CLayer() :
 	m_iZOrder(0),

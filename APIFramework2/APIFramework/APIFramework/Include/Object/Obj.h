@@ -70,7 +70,8 @@ public:
 	_SIZE GetSize() const { return m_tSize; }
 	POSITION GetPivot() const { return m_tPivot; }
 
-
+	const list <CCollider1*>* GetColliderList() const { return &m_ColliderList; }
+	CCollider1* GetCollider(const string& strTag);
 
 	template <typename T>
 	void AddCollisionFunction(const string& strTag, 

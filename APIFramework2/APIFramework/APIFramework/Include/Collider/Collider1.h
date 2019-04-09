@@ -22,7 +22,7 @@ protected:
 	CCollider1(const CCollider1 & coll);
 	virtual ~CCollider1() = 0;
 
-	bool CollisionRectToRect(const RECTANGLE& src,
+	bool CollisionRectToRect(const RECTANGLE& src, 
 		const RECTANGLE& dest);
 	bool CollisionRectToSphere(const RECTANGLE& src,
 		const SPHERE& dest);
@@ -41,9 +41,14 @@ protected:
 
 
 public:
-	COLLLIDER_TYPE GetCollider1Type() const
+	COLLLIDER_TYPE GetColliderType() const
 	{
 		return m_eCollType;
+	}
+
+	POSITION GetHitPoint() const 
+	{ 
+		return m_tHitPoint; 
 	}
 
 	class CObj* GetObj() const
@@ -53,7 +58,7 @@ public:
 
 
 	void SetHitPoint(const POSITION& tPos) { m_tHitPoint = tPos; }
-	void AddCollider1(CCollider1* pCollider1) { m_CollisionList.push_back(pCollider1); }
+	void AddCollider(CCollider1* pCollider1) { m_CollisionList.push_back(pCollider1); }
 	void SetObj(class CObj* pObj) { m_pObj = pObj; }
 
 	void AddCollisionFunction(COLLISION_STATE eState,
