@@ -53,9 +53,9 @@ bool CColliderPixel::SetPixelInfo(char * pFileName, const string & strPathKey) {
 
 	PPIXEL pPixelArr = new PIXEL[m_iWidth];
 
-	// 위 아래를 반전시켜준다.
+	// 위 아래를 반전
 	for (int i = 0; i < m_iHeight / 2; i++) {
-		// 현재 인덱스의 픽셀 한 줄을 저장해둔다.
+		// 현재 인덱스의 픽셀 한 줄을 저장
 		memcpy(pPixelArr, &m_vecPixel[i * m_iWidth],sizeof(PIXEL) * m_iWidth);
 		memcpy(&m_vecPixel[i * m_iWidth], &m_vecPixel[(m_iHeight - i - 1) * m_iWidth],sizeof(PIXEL) * m_iWidth);
 		memcpy(&m_vecPixel[(m_iHeight - i - 1) * m_iWidth], pPixelArr, sizeof(PIXEL) * m_iWidth);
