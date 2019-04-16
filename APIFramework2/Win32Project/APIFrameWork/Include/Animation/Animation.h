@@ -13,11 +13,11 @@ private:
 
 private:
 	unordered_map<string, PANIMATIONCLIP> m_mapClip;
-	PANIMATIONCLIP m_pCurClip;
-	string m_strCurClip;
-	string m_strDefaultClip;
-	class CObj* m_pObj;
-	bool m_bMotionEnd;
+	PANIMATIONCLIP	m_pCurClip;
+	string		m_strCurClip;
+	string		m_strDefaultClip; // 기본으로 돌아가는 부분
+	class		CObj* m_pObj;
+	bool		m_bMotionEnd;
 
 public:
 	bool GetMotionEnd() const {
@@ -28,7 +28,7 @@ public:
 		return m_pCurClip;
 	}
 
-	void SetObj(class CObj* pObj) {
+	void SetObj(class CObj* pObj) { // 가지고있는 객체를 알고 있도록 함
 		m_pObj = pObj;
 	}
 	bool AddClip(const string& strName, ANIMATION_TYPE eType, ANIMATION_OPTION eOption,

@@ -221,12 +221,15 @@ typedef struct _tagAnimationClip {
 	float fAnimationFrameTime;
 	int iFrameX;
 	int iFrameY;
+
 	int iFrameMaxX;
 	int iFrameMaxY;
+	// 시작하는 에니메이션의 줄 번호
 	int iStartX;
 	int iStartY;
 	int iLengthX;
 	int iLengthY;
+	// 제한시간
 	float fOptionTime;
 	float fOptionLimitTime;
 	_SIZE tFrameSize;
