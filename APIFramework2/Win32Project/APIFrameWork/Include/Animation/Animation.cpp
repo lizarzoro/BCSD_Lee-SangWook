@@ -97,7 +97,6 @@ void CAnimation::SetClipColorKey(const string & strClip,
 
 	if (!pClip)
 		return;
-
 	for (size_t i = 0; i < pClip->vecTexture.size(); i++) {
 		pClip->vecTexture[i]->SetColorKey(r, g, b);
 	}
