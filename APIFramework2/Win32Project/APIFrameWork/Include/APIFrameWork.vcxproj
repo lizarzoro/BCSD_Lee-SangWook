@@ -176,6 +176,8 @@
     <ClCompile Include="Scene\Layer.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -200,6 +202,7 @@
     <ClInclude Include="Object\Player.h" />
     <ClInclude Include="Object\Stage.h" />
     <ClInclude Include="Object\StaticObj.h" />
+    <ClInclude Include="Object\UI.h" />
     <ClInclude Include="Ref.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
@@ -209,6 +212,7 @@
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Type.h" />
+    <ClInclude Include="UIPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="APIFrameWork.rc" />
