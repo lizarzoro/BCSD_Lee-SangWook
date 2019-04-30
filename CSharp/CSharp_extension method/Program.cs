@@ -1,8 +1,29 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp_extension_method
 {
+    class program
+    {
+        static void Main(string[] args)
+        {
+                     
+                int a = 124;
+            //bool b = MyUtility.IsEven(a);
+            bool b = a.IsEven();
+            b = 100.IsEven();
+
+            string s = "ABC";
+            s.DachAppen("EDF");
+        }
+
+
+    }
+    /*
+     * 
+     * 
     // static class를 정의
     public static class ExClass
     {
@@ -48,6 +69,7 @@ namespace CSharp_extension_method
             bool found = s.Found('z');
         }
     }
+    */
 }
 
 /*
